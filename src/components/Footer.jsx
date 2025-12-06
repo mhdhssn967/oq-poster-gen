@@ -6,12 +6,12 @@ const Footer = () => {
       style={{
         display: 'flex',
         padding: '12px 10px',
-        width: '100%',
+        width: '120%',
         backgroundColor: 'black',
         justifyContent: 'center',
-        gap: '40px',
+        gap: '80px',
         color: 'white',
-        fontSize: '16px'
+        fontSize: '16px',marginBottom:'-30px',marginLeft:'-32px'
       }}
     >
       <span>www.oqulix.com</span>

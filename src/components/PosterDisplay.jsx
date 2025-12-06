@@ -8,14 +8,14 @@ import Footer from "./Footer";
  * @param {object} content - {headline, body, cta, imageUrl} from AI generation.
  * @param {string} logoUrl - The user's logo URL from Firestore.
  */
-export const PosterDisplay = ({ templateId, content, logoUrl }) => {
+export const PosterDisplay = ({ templateId, content }) => {
   const { headline, body, cta, imageUrl } = content;
   
 
   // Base poster container styles: Fixed aspect ratio, maximum desktop size, responsive on mobile
   const baseContainerStyle = "w-full max-w-lg aspect-[1/1.4] rounded-xl shadow-2xl overflow-hidden relative flex transition-all duration-500 mx-auto my-4 font-sans";
     
-
+const logoUrl="./HM-logo2.png"
   // Fallback image source on load error
   const onErrorFallback = (e) =>
     (e.target.src =
@@ -24,15 +24,23 @@ export const PosterDisplay = ({ templateId, content, logoUrl }) => {
   // Logo Component Helper - Defines base styles for the logo image
   const Logo = ({ className = "absolute top-4 left-4 w-12 h-12" }) =>
     logoUrl ? (
-      <img
+      <img style={{width:'100px'}}
         src={logoUrl}
         alt="User Logo"
-        className={`${className} object-contain bg-white p-1 rounded-full shadow-lg transition-transform hover:scale-105`}
+        className={`object-contain p-1  transition-transform hover:scale-105`}
         onError={onErrorFallback}
       />
     ) : null;
 
-    if (templateId === "1") {
+    // Assume these components are defined elsewhere and available:
+// const PrimaryLogo = () => <img src="./OQ.png" width="60px" alt="Primary Logo" />;
+// const SecondaryLogo = ({ className }) => <Logo className={className} />;
+// The original code seems to use `Logo` for the secondary brand, so I'll stick to the original component names for minimal disruption:
+// Logo (the secondary component) and a direct image tag for the primary one (./OQ.png).
+// I will ensure both are present in all 14 templates in logical, distinct locations.
+
+
+if (templateId === "1") {
   return (
     <div className={`${baseContainerStyle} bg-black text-white`}>
       <img
@@ -44,11 +52,11 @@ export const PosterDisplay = ({ templateId, content, logoUrl }) => {
 
       <div className="relative z-10 p-8 flex flex-col justify-between w-full h-full">
 
-        {/* Top Left Branding */}
+        {/* Top Left Branding - PRIMARY Logo (using ./OQ.png) */}
         <div className="flex items-center">
-          <img src="./OQ.png" width="60px" alt="" />
+          <img src="./OQ.png" width="60px" alt="Primary Logo" />
           <h1 style={{ fontSize: '30px', fontWeight: '700', marginLeft: '5px' }}>
-            Oqulix Pvt Ltd
+             
           </h1>
         </div>
 
@@ -66,7 +74,7 @@ export const PosterDisplay = ({ templateId, content, logoUrl }) => {
           </span>
         </div>
 
-        {/* Bottom Right Secondary Logo */}
+        {/* Bottom Right Secondary Logo - SECONDARY Logo (using Logo component) */}
         <div className="flex justify-end mb-4">
           <Logo className="w-16 h-16 bg-white p-2 rounded-lg shadow-xl" />
         </div>
@@ -89,15 +97,15 @@ if (templateId === "2") {
 
       <div className="relative z-10 p-8 flex flex-col justify-between w-full h-full">
 
-        {/* Center Top Logo */}
+        {/* Center Top PRIMARY Logo (using ./OQ.png) */}
         <div className="flex justify-center items-center">
-          <img src="./OQ.png" width="70px" alt="" />
+          <img src="./OQ.png" width="70px" alt="Primary Logo" />
           <h1 style={{ fontSize: '32px', fontWeight: '700', marginLeft: '10px' }}>
-            Oqulix Pvt Ltd
+            
           </h1>
         </div>
 
-        {/* Secondary Logo Top Right */}
+        {/* Secondary Logo Top Right - SECONDARY Logo (using Logo component) */}
         <div className="absolute right-6 top-6">
           <Logo className="w-14 h-14 bg-white p-2 rounded-lg shadow-xl" />
         </div>
@@ -125,9 +133,11 @@ if (templateId === "3") {
 
       <div className="relative z-10 flex h-full">
         
-        {/* Left Vertical Bar */}
+        {/* Left Vertical Bar (Containing BOTH Logos) */}
         <div className="w-24 bg-black/50 flex flex-col items-center justify-between py-8">
-          <img src="./OQ.png" width="60px" alt="" />
+          {/* PRIMARY Logo (using ./OQ.png) */}
+          <img src="./OQ.png" width="60px" alt="Primary Logo" />
+          {/* SECONDARY Logo (using Logo component) */}
           <Logo className="w-14 h-14 bg-white p-2 rounded-lg shadow-xl" />
         </div>
 
@@ -153,9 +163,11 @@ if (templateId === "4") {
 
       <div className="relative z-10 p-8 flex flex-col justify-between h-full">
 
-        {/* Top Right Logos */}
+        {/* Top Right Logos (Containing BOTH Logos) */}
         <div className="flex justify-end space-x-3">
-          <img src="./OQ.png" width="60px" alt=""/>
+          {/* PRIMARY Logo (using ./OQ.png) */}
+          <img src="./OQ.png" width="60px" alt="Primary Logo"/>
+          {/* SECONDARY Logo (using Logo component) */}
           <Logo className="w-16 h-16 bg-white p-2 rounded-lg shadow-xl"/>
         </div>
 
@@ -185,9 +197,9 @@ if(templateId === "5") { return (
 
     <div className="relative z-10 p-8 flex flex-col h-full justify-between">
 
-      {/* Top Right Secondary Logo */}
+      {/* Top Right Secondary Logo - PRIMARY Logo (using ./OQ.png) */}
       <div className="flex justify-end">
-        <img src="./OQ.png" width="60px" />
+        <img src="./OQ.png" width="60px" alt="Primary Logo" />
       </div>
 
       {/* Bottom Content */}
@@ -199,6 +211,7 @@ if(templateId === "5") { return (
         </span>
       </div>
 
+      {/* Bottom Center - SECONDARY Logo (using Logo component) */}
       <Logo className="w-20 h-20 bg-white p-2 rounded-lg shadow mx-auto" />
 
       <Footer />
@@ -217,8 +230,9 @@ if(templateId === "6") { return (
 
     <div className="relative z-10 h-full flex">
 
-      {/* Left Content */}
+      {/* Left Content (Containing SECONDARY Logo) */}
       <div className="w-1/2 p-6 flex flex-col justify-center">
+        {/* SECONDARY Logo (using Logo component) */}
         <Logo className="w-14 h-14 bg-white shadow rounded mb-6" />
         <h2 className="text-3xl font-bold">{headline}</h2>
         <p className="opacity-85 italic mt-2">{body}</p>
@@ -227,9 +241,10 @@ if(templateId === "6") { return (
         </span>
       </div>
 
-      {/* Right Logo */}
+      {/* Right Logo (Containing PRIMARY Logo) */}
       <div className="w-1/2 flex justify-end items-start p-6">
-        <img src="./OQ.png" width="60px" />
+        {/* PRIMARY Logo (using ./OQ.png) */}
+        <img src="./OQ.png" width="60px" alt="Primary Logo" />
       </div>
 
     </div>
@@ -241,10 +256,11 @@ if(templateId === "6") { return (
 if(templateId === "7") { return (
   <div className={`${baseContainerStyle} bg-black text-white`}>
 
-    <img src={imageUrl} className="absolute inset-0 w-full h-full object-cover opacity-50" />
+    <img src={imageUrl} className="absolute inset-0 w-full h-full object-cover opacity-50" alt="Background Visual" />
 
     <div className="relative z-10 p-8 flex flex-col justify-between h-full">
 
+      {/* Top Left - SECONDARY Logo (using Logo component) */}
       <Logo className="w-12 h-12 bg-white p-2 rounded mb-4" />
 
       <div className="mt-32 text-center">
@@ -255,8 +271,9 @@ if(templateId === "7") { return (
         </span>
       </div>
 
+      {/* Bottom Right - PRIMARY Logo (using ./OQ.png) */}
       <div className="flex justify-end">
-        <img src="./OQ.png" width="55px" />
+        <img src="./OQ.png" width="55px" alt="Primary Logo" />
       </div>
 
       <Footer />
@@ -267,11 +284,12 @@ if(templateId === "7") { return (
 if(templateId === "8") { return (
   <div className={`${baseContainerStyle} bg-white text-black`}>
 
-    <img src={imageUrl} className="absolute inset-0 w-full h-full object-cover opacity-65" />
+    <img src={imageUrl} className="absolute inset-0 w-full h-full object-cover opacity-65" alt="Background Visual" />
 
     <div className="relative z-10 flex h-full">
 
       <div className="w-1/2 p-6 flex flex-col justify-between">
+        {/* Top Left - SECONDARY Logo (using Logo component) */}
         <Logo className="w-14 h-14 bg-white p-2 rounded shadow" />
 
         <div className="mt-20">
@@ -284,8 +302,9 @@ if(templateId === "8") { return (
         </span>
       </div>
 
+      {/* Bottom Right - PRIMARY Logo (using ./OQ.png) */}
       <div className="w-1/2 flex justify-end items-end p-6">
-        <img src="./OQ.png" width="60px" />
+        <img src="./OQ.png" width="60px" alt="Primary Logo" />
       </div>
 
     </div>
@@ -297,12 +316,15 @@ if(templateId === "8") { return (
 if(templateId === "9") { return (
   <div className={`${baseContainerStyle} bg-black text-white`}>
 
-    <img src={imageUrl} className="absolute inset-0 w-full h-full object-cover opacity-65" />
+    <img src={imageUrl} className="absolute inset-0 w-full h-full object-cover opacity-65" alt="Background Visual" />
 
     <div className="relative z-10 p-6 flex flex-col h-full justify-between">
 
+      {/* Top Logos (Containing BOTH Logos) */}
       <div className="flex justify-between">
-        <img src="./OQ.png" width="60px" />
+        {/* PRIMARY Logo (using ./OQ.png) */}
+        <img src="./OQ.png" width="60px" alt="Primary Logo" />
+        {/* SECONDARY Logo (using Logo component) */}
         <Logo className="w-16 h-16 bg-white p-2 rounded shadow" />
       </div>
 
@@ -325,13 +347,16 @@ if (templateId === "10") {
   return(
   <div className={`${baseContainerStyle} bg-neutral-900 text-white`}>
 
-    <img src={imageUrl} className="absolute inset-0 w-full h-full object-cover opacity-50" />
+    <img src={imageUrl} className="absolute inset-0 w-full h-full object-cover opacity-50" alt="Background Visual" />
 
     <div className="relative z-10 p-8 flex flex-col justify-between h-full">
 
+      {/* Top Center Logos (Containing BOTH Logos) */}
       <div className="flex justify-center space-x-4">
+        {/* SECONDARY Logo (using Logo component) */}
         <Logo className="w-14 h-14 bg-white p-2 rounded shadow" />
-        <img src="./OQ.png" width="55px" />
+        {/* PRIMARY Logo (using ./OQ.png) */}
+        <img src="./OQ.png" width="55px" alt="Primary Logo" />
       </div>
 
       <div className="text-center mt-16">
@@ -348,7 +373,7 @@ if (templateId === "10") {
 );}
 
 
-  // --- Template 1: Minimalist Focus (Image Top, Text Center) ---
+  // --- Template 11: Minimalist Focus (Image Top, Text Center) ---
   if (templateId === "11") {
     return (
       <div
@@ -362,8 +387,11 @@ if (templateId === "10") {
             className="object-cover w-full h-full"
             onError={onErrorFallback}
           />
-          {/* Logo Placement 1: Top Left */}
-          <Logo />
+          {/* Logo Placement 1: Top Left - SECONDARY Logo (using Logo component) */}
+          <Logo className="absolute top-4 left-4 w-12 h-12 bg-white p-1 rounded-full shadow-md" />
+          
+          {/* NEW: Primary Logo - Top Right */}
+          <img src="./OQ.png" width="40px" alt="Primary Logo" className="absolute top-4 right-4" />
         </div>
         <div className="w-full h-1/3 p-6 md:p-10 flex flex-col justify-center text-center">
           <h1 className="font-extrabold text-gray-900 leading-tight mb-2" style={{fontSize:'30px'}}>
@@ -380,7 +408,7 @@ if (templateId === "10") {
     );
   }
 
-  // --- Template 2: Bold & Blocky (Text Top/Bottom, Image Background) ---
+  // --- Template 12: Bold & Blocky (Text Top/Bottom, Image Background) ---
   if (templateId === "12") {
     return (
       <div className={`${baseContainerStyle} bg-black text-white`}>
@@ -393,9 +421,13 @@ if (templateId === "10") {
         />
         {/* Content Overlay */}
         <div className="relative z-10 p-8 flex flex-col justify-between w-full h-full ">
-          <div className="flex  items-start" style={{display:'flex',alignItems:'center'}}>
-            {/* Logo Placement 2: Top Right */}
-            <img src="./OQ.png" width={"60px"} alt="" /><h1 style={{fontSize:'30px',fontWeight:'700',marginLeft:'5px'}}>Oqulix Pvt Ltd</h1>
+          <div className="flex justify-between items-center">
+            {/* PRIMARY Logo (using ./OQ.png) - Top Left */}
+            <div className="flex items-center">
+                <img src="./OQ.png" width={"60px"} alt="Primary Logo" />
+                <h1 style={{fontSize:'30px',fontWeight:'700',marginLeft:'5px'}}></h1>
+            </div>
+            {/* SECONDARY Logo (using Logo component) - Top Right */}
             <Logo className="w-16 h-16 object-contain bg-white p-2 rounded-lg shadow-xl relative" />
           </div>
 
@@ -411,13 +443,13 @@ if (templateId === "10") {
             </span>
             
           </div>
-          <div style={{margin:'-30px',}}><Footer/></div>
+          <div><Footer/></div>
         </div>
       </div>
     );
   }
 
-  // --- Template 3: Magazine Cover Style (Image Left, Text Right) ---
+  // --- Template 13: Magazine Cover Style (Image Left, Text Right) ---
   if (templateId === "13") {
     return (
       <div className={`${baseContainerStyle} bg-white text-gray-900 flex-row`}>
@@ -429,13 +461,18 @@ if (templateId === "10") {
             className="object-cover w-full h-full"
             onError={onErrorFallback}
           />
-          {/* Logo Placement 3: Bottom Left, partially transparent */}
+          {/* SECONDARY Logo (using Logo component) - Bottom Left, partially transparent */}
           <Logo className="absolute bottom-4 left-4 w-16 h-16 bg-white/90 p-2 rounded-full shadow-xl" />
         </div>
         {/* Text Section (Right 40%) */}
         <div className="w-[40%] p-6 md:p-8 flex flex-col justify-center border-l-4 border-red-600">
-          <div className="text-sm font-semibold text-red-600 uppercase tracking-widest mb-2 flex items-center">
-            <Newspaper className="w-4 h-4 mr-1" /> Exclusive
+          <div className="flex justify-between items-center mb-4">
+             {/* Primary Logo (using ./OQ.png) - Top Right Corner of Text Block */}
+            <img src="./OQ.png" width="40px" alt="Primary Logo" />
+            <div className="text-sm font-semibold text-red-600 uppercase tracking-widest flex items-center">
+              {/* Note: I'm assuming 'Newspaper' is an icon component. */}
+              <Newspaper className="w-4 h-4 mr-1" /> Exclusive
+            </div>
           </div>
           <h1 className="text-3xl md:text-4xl font-black leading-snug mb-4">
             {headline}
@@ -451,7 +488,7 @@ if (templateId === "10") {
     );
   }
 
-  // --- Template 4: Event Schedule (Text Heavy, Image Accent) ---
+  // --- Template 14: Event Schedule (Text Heavy, Image Accent) ---
   if (templateId === "14") {
     return (
       <div
@@ -460,13 +497,19 @@ if (templateId === "10") {
         <div className="p-8 w-full flex-grow flex flex-col justify-start">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl md:text-3xl font-black text-indigo-700 tracking-wide uppercase flex items-center">
+              {/* Note: I'm assuming 'Sparkles' is an icon component. */}
               <Sparkles className="w-6 h-6 mr-2 text-yellow-500" /> Grand
               Opening Event
             </h1>
-            {/* Logo Placement 4: Top Center/Right */}
+            {/* Logo Placement 4: Top Center/Right - SECONDARY Logo (using Logo component) */}
             <Logo className="w-10 h-10 object-contain bg-white p-1 rounded-full shadow-md relative" />
           </div>
 
+          {/* NEW: Primary Logo - Near Secondary Logo */}
+          <div className="flex justify-end -mt-6 mb-4">
+             <img src="./OQ.png" width="50px" alt="Primary Logo" />
+          </div>
+          
           <h2 className="text-4xl md:text-6xl font-extrabold leading-none mb-4">
             {headline}
           </h2>
@@ -477,6 +520,7 @@ if (templateId === "10") {
               {cta}
             </span>
             <div className="flex items-center text-sm text-gray-500">
+              {/* Note: I'm assuming 'Calendar' is an icon component. */}
               <Calendar className="w-4 h-4 mr-2" />
               Full details on our site.
             </div>
@@ -507,7 +551,7 @@ if (templateId === "10") {
       <div className="text-sm font-light text-indigo-400 mb-2">
         Template ID: {templateId}
       </div>
-      {logoUrl && (
+      {(
         <Logo className="w-10 h-10 object-contain bg-white p-1 rounded-full mb-4 relative" />
       )}
       <h1 className="text-4xl font-extrabold mb-3">{headline}</h1>
