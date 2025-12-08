@@ -37,8 +37,8 @@ export default function App() {
     const { userId, isAuthReady, logoUrl } = useFirebase();
 
     // Application State
-    const [prompt, setPrompt] = useState('An innovative product launch for a new sustainable coffee brand.');
-    const [imageStyle,setImageStyle]=useState('')    
+    const [prompt, setPrompt] = useState('Happy Moves - a VR rehabilitation platform for physiotherapy');
+    const [imageStyle,setImageStyle]=useState('A patient wearing a VR headset in a physiotherapy room while a doctor assists them using a tablet')    
     const [selectedTemplate, setSelectedTemplate] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
