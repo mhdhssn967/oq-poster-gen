@@ -38,21 +38,25 @@ export default function App() {
 
     // Application State
     const [prompt, setPrompt] = useState('An innovative product launch for a new sustainable coffee brand.');
-    const [imageStyle,setImageStyle]=useState('')
+    const [imageStyle,setImageStyle]=useState('')    
     const [selectedTemplate, setSelectedTemplate] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     
     const [generatedContent, setGeneratedContent] = useState({
-        headline: 'Discover the Future of Coffee',
-        body: 'Ethically sourced, low carbon footprint, and amazingly delicious. Join the movement.',
-        cta: 'Shop Now & Get 10% Off',
+        headline: 'Headline',
+        body: 'Text Description',
+        cta: 'CTA',
         imageUrl: 'https://placehold.co/1024x576/4f46e5/ffffff?text=AI+Image+Placeholder',
     });
     
 
     // Phase 3 & 5: Core Generation Logic
     const handleGeneratePoster = useCallback(async () => {
+        console.log(prompt);
+        console.log(imageStyle);
+        
+        
         if (!prompt) {
             setError("Please enter a prompt to generate the poster.");
             return;
@@ -85,7 +89,7 @@ export default function App() {
         } finally {
             setIsLoading(false);
         }
-    }, [prompt]);
+    }, [prompt,imageStyle]);
 
     // Wait for auth to be ready before showing main content
     if (!isAuthReady) {

@@ -1,7 +1,7 @@
 // src/api/gemini.js
 
 // API key is expected to be provided by the runtime environment
-const apiKey = "AIzaSyDQznyHVIOoQzsTuJtdBGmg3_Yr6lTIPxk"; 
+const apiKey = "AIzaSyDdj_EnVUX8O7ohe6A2jykYNDmcP5thgPk"; 
 
 /**
  * Executes a fetch request with exponential backoff for retries.
